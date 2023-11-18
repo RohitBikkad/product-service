@@ -1,0 +1,13 @@
+package com.productservice.dto;
+
+import java.util.Set;
+
+public class ProductDTO {
+	
+	private Long id;
+    private String productKey;
+    private String productName;
+    private String productDescription;
+    private Set<ProductVariantDTO> variants;
+
+}

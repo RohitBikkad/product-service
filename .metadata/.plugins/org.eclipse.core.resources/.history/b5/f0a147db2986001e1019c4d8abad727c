@@ -1,0 +1,12 @@
+package com.productservice.dto;
+
+public class PriceDTO {
+	
+	private Long id;
+    private String priceKey;
+    private String sku;
+    private Double centAmount;
+    private String currency;
+    private Long productVariantId;
+
+}

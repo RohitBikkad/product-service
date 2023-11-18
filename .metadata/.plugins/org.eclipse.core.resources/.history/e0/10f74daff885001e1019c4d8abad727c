@@ -1,0 +1,9 @@
+package com.productservice.dto;
+
+public class ProductVariantDTO {
+
+    private Long id;
+    private String sku;
+
+    // Getters and setters
+}
