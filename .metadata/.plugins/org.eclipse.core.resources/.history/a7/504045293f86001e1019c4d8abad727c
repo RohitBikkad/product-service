@@ -1,0 +1,18 @@
+package com.productservice.dto;
+
+import java.util.Map;
+
+
+
+public class ProductTypeDTO {
+
+	 private Long id;
+	private String productTypeName;
+	private String productTypekey;
+	private Map<String,String> attributeDefination;
+	
+	
+	
+	
+	
+}

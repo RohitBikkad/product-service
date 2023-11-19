@@ -1,0 +1,11 @@
+package com.productservice.dto;
+
+public class ProductCategoryDTO {
+    
+    private Long id;
+    private String categoryKey;
+    private String categoryName;
+    private String description;
+
+    // Constructors, getters, and setters...
+}

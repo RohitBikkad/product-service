@@ -1,0 +1,12 @@
+package com.productservice.service;
+
+import java.util.List;
+
+
+public interface ProductTypeService {
+	ProductTypeDTO saveProductType(ProductTypeDto productTypeDto);
+	ProductTypeDto getProductTypeByKey(String productTypeKey);
+	List<ProductType> getAllProductType();
+	ProductType deleteProductTypeByKey(String productTypeKey);
+	ProductTypeDto updateProductTypeByKey(ProductTypeDto productTypeDto, String productTypeKey);
+}

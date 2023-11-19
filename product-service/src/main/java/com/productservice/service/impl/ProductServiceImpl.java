@@ -1,8 +1,11 @@
 package com.productservice.service.impl;
 
 import com.productservice.dto.ProductDTO;
+import com.productservice.dto.ProductTypeDTO;
 import com.productservice.entities.Product;
+import com.productservice.entities.ProductType;
 import com.productservice.repository.ProductRepository;
+import com.productservice.repository.ProductTypeRepository;
 import com.productservice.service.ProductService;
 
 import org.modelmapper.ModelMapper;
@@ -17,14 +20,41 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private ProductTypeRepository productTypeRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public ProductDTO saveProduct(ProductDTO productDTO) {
+    	
         // Convert DTO to Entity
+//        Product product = modelMapper.map(productDTO, Product.class);
+//        
+////        ProductTypeDTO productTypeDTO = new ProductTypeDTO();
+////        productDTO.setProductType(productTypeDTO);
+////        ProductType productType = modelMapper.map(productDTO.getProductType(), ProductType.class);
+////        product.setProductType(productType);
+//        
+//        
+//        // Save Product entity
+//        Product savedProduct = productRepository.save(product);
+//
+//        // Convert Entity back to DTO and return
+//        return modelMapper.map(savedProduct, ProductDTO.class);
+        
+        
+//       
+
+
         Product product = modelMapper.map(productDTO, Product.class);
+
+        // Convert ProductTypeDTO to ProductType and set it in Product
+        if (productDTO.getProductType() != null) {
+        	product.setProductType(modelMapper.map(productDTO.getProductType(), ProductType.class));
+        }
 
         // Save Product entity
         Product savedProduct = productRepository.save(product);

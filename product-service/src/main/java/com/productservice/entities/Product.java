@@ -1,5 +1,6 @@
 package com.productservice.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -10,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -27,15 +29,31 @@ public class Product {
 	@Column(unique = true,nullable = false)
 	private String productDescription; 
 	
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private Set<ProductCategory> productCategories = new HashSet<>();
 	
+	@OneToOne(cascade = CascadeType.ALL)
+    private ProductType productType;
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+
 	@OneToMany(cascade = CascadeType.ALL,
 			fetch = FetchType.LAZY,
 			mappedBy = "product")
 	private Set<ProductVariant> variants;
+
 	
 	public Product() {
 		super();
 	}
+	
 
 	public long getId() {
 		return id;
@@ -69,6 +87,14 @@ public class Product {
 		this.productDescription = productDescription;
 	}
 
+	public Set<ProductCategory> getProductCategories() {
+		return productCategories;
+	}
+
+	public void setProductCategories(Set<ProductCategory> productCategories) {
+		this.productCategories = productCategories;
+	}
+
 	public Set<ProductVariant> getVariants() {
 		return variants;
 	}
@@ -77,6 +103,14 @@ public class Product {
 		this.variants = variants;
 	}
 
+	public void addProductCategory(ProductCategory productCategory) {
+        this.productCategories.add(productCategory);
+        productCategory.setProduct(this);
+    }
+
+	
+
+	
 	
 	
 

@@ -9,17 +9,8 @@ public class ProductDTO {
     private String productName;
     private String productDescription;
     private Set<ProductVariantDTO> variants;
-    
-    
-	public ProductDTO(Long id, String productKey, String productName, String productDescription,
-			Set<ProductVariantDTO> variants) {
-		super();
-		this.id = id;
-		this.productKey = productKey;
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.variants = variants;
-	}
+    private Set<ProductCategoryDTO> categories;
+    private ProductTypeDTO productType;
 	public ProductDTO() {
 		super();
 	}
@@ -53,6 +44,21 @@ public class ProductDTO {
 	public void setVariants(Set<ProductVariantDTO> variants) {
 		this.variants = variants;
 	}
+	public Set<ProductCategoryDTO> getCategories() {
+		return categories;
+	}
+	public void setCategories(Set<ProductCategoryDTO> categories) {
+		this.categories = categories;
+	}
+	public ProductTypeDTO getProductType() {
+		return productType;
+	}
+	public void setProductType(ProductTypeDTO productType) {
+		this.productType = productType;
+	}
+    
+    
+	
 	
 	
     
