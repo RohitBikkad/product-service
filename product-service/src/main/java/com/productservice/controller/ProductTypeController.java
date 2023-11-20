@@ -19,6 +19,8 @@ import com.productservice.dto.ProductTypeDTO;
 import com.productservice.entities.ProductType;
 import com.productservice.service.ProductTypeService;
 
+import jakarta.transaction.Transactional;
+
 
 @RestController
 @RequestMapping("/api/productType")
@@ -39,33 +41,21 @@ public class ProductTypeController {
 	}
 
 	@GetMapping("/{productTypeKey}")
+	@Transactional
 	public ResponseEntity<ProductTypeDTO> getProductTypeByKey(@PathVariable("productTypeKey") String productTypeKey) {
 		ProductTypeDTO productTypeDto = productTypeService.getProductTypeByKey(productTypeKey);
 		return ResponseEntity.ok(productTypeDto);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<ProductType>> getAllProductType() {
-		return ResponseEntity.ok(productTypeService.getAllProductType());
-
-	}
 
 	@DeleteMapping("/{productTypeKey}")
+	@Transactional
 	public ResponseEntity<ProductType> deleteProductTypeByKey(@PathVariable("productTypeKey") String productTypeKey) {
 		ProductType productType = productTypeService.deleteProductTypeByKey(productTypeKey);
 		return ResponseEntity.ok(productType);
 	}
 	
-	@PutMapping("/{productTypeKey}")
-	public ResponseEntity<ProductTypeDTO> updateProductTypeByKey(@RequestBody ProductTypeDTO productTypeDto,
-														@PathVariable("productTypeKey") String productTypeKey) {
-		ProductTypeDTO updateProductTypeDto = productTypeService.updateProductTypeByKey(productTypeDto,productTypeKey);
-		if (updateProductTypeDto != null) {
-	        return new ResponseEntity<>(updateProductTypeDto, HttpStatus.OK);
-	    } else {
-	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    }
-	}
+	
 	
 
 }
