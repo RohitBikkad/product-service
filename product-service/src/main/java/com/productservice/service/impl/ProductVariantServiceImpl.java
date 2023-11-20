@@ -31,13 +31,10 @@ public class ProductVariantServiceImpl implements ProductVariantService {
     public ProductVariantDTO createProductVariant(ProductVariantDTO productVariantDTO) {
         ProductVariant productVariant = modelMapper.map(productVariantDTO, ProductVariant.class);
 
-        // Fetch the ProductDTO by its ID
         ProductDTO productDTO = productService.getProductById(productVariantDTO.getProductId());
 
-        // Convert ProductDTO to Product entity
         Product product = modelMapper.map(productDTO, Product.class);
 
-        // Set the Product in ProductVariant
         productVariant.setProduct(product);
 
         ProductVariant savedProductVariant = productVariantRepository.save(productVariant);

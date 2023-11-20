@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class ProductVariant {
@@ -26,6 +27,10 @@ public class ProductVariant {
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "master_variant_id")
+    private ProductVariant masterVariant;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "productVariant")
     private Set<Price> price;

@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDTO saveProduct(ProductDTO productDTO) {
     	
-        // Convert DTO to Entity
+
 //        Product product = modelMapper.map(productDTO, Product.class);
 //        
 ////        ProductTypeDTO productTypeDTO = new ProductTypeDTO();
@@ -39,10 +39,10 @@ public class ProductServiceImpl implements ProductService {
 ////        product.setProductType(productType);
 //        
 //        
-//        // Save Product entity
+
 //        Product savedProduct = productRepository.save(product);
 //
-//        // Convert Entity back to DTO and return
+
 //        return modelMapper.map(savedProduct, ProductDTO.class);
         
         
@@ -50,22 +50,17 @@ public class ProductServiceImpl implements ProductService {
 
 
         Product product = modelMapper.map(productDTO, Product.class);
-
-        // Convert ProductTypeDTO to ProductType and set it in Product
         if (productDTO.getProductType() != null) {
         	product.setProductType(modelMapper.map(productDTO.getProductType(), ProductType.class));
         }
 
-        // Save Product entity
         Product savedProduct = productRepository.save(product);
 
-        // Convert Entity back to DTO and return
         return modelMapper.map(savedProduct, ProductDTO.class);
     }
 
     @Override
     public ProductDTO getProductById(Long id) {
-        // Retrieve product from repository
         return productRepository.findById(id)
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .orElse(null);
@@ -74,10 +69,9 @@ public class ProductServiceImpl implements ProductService {
   
     @Override
     public List<ProductDTO> getAllProducts() {
-        // Retrieve all products from repository
+
         List<Product> productList = productRepository.findAll();
 
-        // Convert each product entity to DTO and collect into a list
         return productList.stream()
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .collect(Collectors.toList());
@@ -85,12 +79,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO deleteProduct(Long id) {
-        // Retrieve product from repository
         return productRepository.findById(id)
                 .map(product -> {
-                    // Delete product from repository
                     productRepository.delete(product);
-                    // Convert deleted product to DTO and return
                     return modelMapper.map(product, ProductDTO.class);
                 })
                 .orElse(null);

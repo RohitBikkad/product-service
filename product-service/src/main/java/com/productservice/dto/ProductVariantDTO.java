@@ -8,19 +8,38 @@ public class ProductVariantDTO {
     private String sku;
     private Long productId;
     private Set<PriceDTO> price;
+    private ProductVariantDTO masterVariant;
     
+    public ProductVariantDTO() {
+		super();
+	}
     
-    
-    
+	public ProductVariantDTO(Long id, String sku, Long productId, Set<PriceDTO> price) {
+		super();
+		this.id = id;
+		this.sku = sku;
+		this.productId = productId;
+		this.price = price;
+	}
+	
+
+	public ProductVariantDTO(Long id, String sku, Long productId, Set<PriceDTO> price,
+			ProductVariantDTO masterVariant) {
+		super();
+		this.id = id;
+		this.sku = sku;
+		this.productId = productId;
+		this.price = price;
+		this.masterVariant = masterVariant;
+	}
+
 	public Set<PriceDTO> getPrice() {
 		return price;
 	}
 	public void setPrice(Set<PriceDTO> price) {
 		this.price = price;
 	}
-	public ProductVariantDTO() {
-		super();
-	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,6 +57,20 @@ public class ProductVariantDTO {
 	}
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+
+
+
+
+	public ProductVariantDTO getMasterVariant() {
+		return masterVariant;
+	}
+
+
+
+
+	public void setMasterVariant(ProductVariantDTO masterVariant) {
+		this.masterVariant = masterVariant;
 	}
 	
 

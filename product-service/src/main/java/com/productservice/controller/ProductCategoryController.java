@@ -1,6 +1,7 @@
 package com.productservice.controller;
 
 import org.modelmapper.ModelMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,15 @@ public class ProductCategoryController {
 
     @Autowired
     private ModelMapper modelMapper;
+    
 
-    @PostMapping
+    public ProductCategoryController(ProductCategoryService productCategoryService, ModelMapper modelMapper) {
+		super();
+		this.productCategoryService = productCategoryService;
+		this.modelMapper = modelMapper;
+	}
+
+	@PostMapping
     public ResponseEntity<ProductCategoryDTO> createCategory(@RequestBody ProductCategoryDTO categoryDTO) {
         ProductCategoryDTO savedCategory = productCategoryService.saveCategory(categoryDTO);
         return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);

@@ -2,6 +2,8 @@ package com.productservice.dto;
 
 import java.util.Set;
 
+import com.productservice.entities.ProductVariant;
+
 public class ProductDTO {
 	
 	private Long id;
@@ -11,6 +13,9 @@ public class ProductDTO {
     private Set<ProductVariantDTO> variants;
     private Set<ProductCategoryDTO> categories;
     private ProductTypeDTO productType;
+    private ProductVariant masterVariant;
+    
+	
 	public ProductDTO() {
 		super();
 	}
@@ -55,6 +60,12 @@ public class ProductDTO {
 	}
 	public void setProductType(ProductTypeDTO productType) {
 		this.productType = productType;
+	}
+	public ProductVariant getMasterVariant() {
+		return masterVariant;
+	}
+	public void setMasterVariant(ProductVariant masterVariant) {
+		this.masterVariant = masterVariant;
 	}
     
     

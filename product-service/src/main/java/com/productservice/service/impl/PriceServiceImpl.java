@@ -15,8 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class PriceServiceImpl implements PriceService {
 
-    private final PriceRepository priceRepository;
-    private final ModelMapper modelMapper;
+	@Autowired
+    private PriceRepository priceRepository;
+    
+	@Autowired
+	private ModelMapper modelMapper;
 
     @Autowired
     public PriceServiceImpl(PriceRepository priceRepository, ModelMapper modelMapper) {
